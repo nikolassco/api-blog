@@ -12,6 +12,12 @@ routes.use(verifyJwt);
 
 routes.get('/user', users.get);
 
+routes.get('/post', posts.getAll)
+routes.get('/post/:id', posts.get)
 routes.post('/user/:id/post', posts.create);
+routes.put('/post/:id', posts.edit);
+routes.delete('/post/:id', posts.deleted);
+// put
+// delete
 
 module.exports = routes;
