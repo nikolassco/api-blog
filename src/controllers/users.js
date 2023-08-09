@@ -6,22 +6,22 @@ const signup = async (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name) {
-    return res.status(400).json({ message: "Nome é obrigatório." })
+    return res.status(400).json({ message: "Nome é obrigatório." });
   }
 
   if (!email) {
-    return res.status(400).json({ message: "E-mail é obrigatório." })
+    return res.status(400).json({ message: "E-mail é obrigatório." });
   }
 
   if (!password) {
-    return res.status(400).json({ message: "Senha é obrigatória." })
+    return res.status(400).json({ message: "Senha é obrigatória." });
   }
 
   try {
     const userExists = await knex('users').where({ email });
 
     if (userExists.length > 0) {
-      return res.status(400).json({ message: "Usuário já cadastrado." })
+      return res.status(400).json({ message: "Usuário já cadastrado." });
     }
 
     const hashPass = await bcrypt.hash(password, 10);
@@ -33,7 +33,9 @@ const signup = async (req, res) => {
     })
       .returning('*');
 
-    return res.status(201).json({ message: newUser });
+    const { password: _, ...registeredUser } = newUser[0];
+
+    return res.status(201).json({ message: registeredUser });
 
   } catch (error) {
     res.status(500).json({ message: error });
@@ -44,11 +46,11 @@ const signin = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email) {
-    return res.status(400).json({ message: "E-mail é obrigatório." })
+    return res.status(400).json({ message: "E-mail é obrigatório." });
   }
 
   if (!password) {
-    return res.status(400).json({ message: "Senha é obrigatória." })
+    return res.status(400).json({ message: "Senha é obrigatória." });
   }
 
   try {

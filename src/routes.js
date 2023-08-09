@@ -4,8 +4,8 @@ const verifyJwt = require('./middlewares/authorizarion');
 
 const routes = express();
 
-routes.post('/user/signup', user.signup);
-routes.post('/user/signin', user.signin);
+routes.post('/signup', user.signup);
+routes.post('/signin', user.signin);
 
 routes.use(verifyJwt);
 
