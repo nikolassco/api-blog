@@ -26,6 +26,7 @@ DB_NAME=blog
 ```
 - Criar no Beekeeper (gerenciador de banco de dados) um `banco de dados (database)` com nome `blog`;
 - Copiar o conteúdo do arquivo `dump.sql` e rodar no Beekeeper com o banco de dados `blog` aberto;
+### Abra a pasta do projeto no VSCode
 - Rodar o comando para instalar as dependências do projeto:
 ```
 npm install
