@@ -5,18 +5,6 @@ const jwt = require("jsonwebtoken");
 const signup = async (req, res) => {
   const { name, email, password } = req.body;
 
-  if (!name) {
-    return res.status(400).json({ message: "Nome é obrigatório." });
-  }
-
-  if (!email) {
-    return res.status(400).json({ message: "E-mail é obrigatório." });
-  }
-
-  if (!password) {
-    return res.status(400).json({ message: "Senha é obrigatória." });
-  }
-
   try {
     const userExists = await knex('users').where({ email });
 
@@ -44,14 +32,6 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
   const { email, password } = req.body;
-
-  if (!email) {
-    return res.status(400).json({ message: "E-mail é obrigatório." });
-  }
-
-  if (!password) {
-    return res.status(400).json({ message: "Senha é obrigatória." });
-  }
 
   try {
     const user = await knex('users').where({ email });
