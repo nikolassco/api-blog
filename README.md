@@ -1,6 +1,6 @@
 <h1 align="center">Blog - API</h1>
 
-Este projeto consiste em uma `API` `REST`, feita como `NodeJS` e com integração com banco de dados relacional (SQL)  `Postgres`, para fazer cadastro e login de usuários, e `CRUD` de posts (criar, ler, atualizar e deletar).
+Este projeto consiste em uma `API REST`, feita como `NodeJS` e com integração com banco de dados relacional (SQL)  `Postgres`, para fazer cadastro e login de usuários, e `CRUD` de posts (criar, ler, atualizar e deletar).
 
 <hr/>
 
