@@ -1,19 +1,20 @@
-# Blog - API
+<h1 align="center">Blog - API</h1>
 
-Este projeto consiste em uma `API` `REST`, feita como `NodeJS` e com integração com banco de dados relacional (SQL)  `Postgres`, para fazer cadastro e login de usuários, e `CRUD` de posts (criar, ler, atualizar e deletar).
+<p>Este projeto consiste em uma `API` `REST`, feita como `NodeJS` e com integração com banco de dados relacional (SQL)  `Postgres`, para fazer cadastro e login de usuários, e `CRUD` de posts (criar, ler, atualizar e deletar).</p>
+
+<hr/>
+
+## Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas: [Node.js](https://nodejs.org/en/), [Postgres](https://www.postgresql.org/download/) e [Beekeeper](https://www.beekeeperstudio.io/get).
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
 
 ## Como Rodar
 
 - Clonar o repositório na pasta dejesada;
 
-- Garantir que tenha `node` e `npm` instalados:
-```
-node -v
-npm -v
-```
-- Garantir que tenha `postgres` instalado;
-
-- Copiar o arquivo `.env.example`, renomear para `.env` e preencher com as configurações.
+- Renomear o arquivo `.env.example` para `.env` e preencher com as configurações. Isto é essencial para que a aplicação possa rodar.
 ```
 PORT=3001
 JWTKEY=minhasenha
@@ -34,7 +35,10 @@ npm install
 npm run dev
 ```
 
-Exemplo de requisição para cadastrar usuário:
+<hr/>
+
+### Alguns exemplos de requisição:
+Para cadastrar usuário:
 ```
 curl --request POST \
   --url http://localhost:3001/signup \
@@ -45,7 +49,7 @@ curl --request POST \
   "password": "morcego"
 }'
 ```
-Exemplo de requisição para fazer login:
+Para fazer login:
 ```
 curl --request POST \
   --url http://localhost:3001/signin \
@@ -55,6 +59,61 @@ curl --request POST \
   "password": "morcego"
 }'
 ```
+
+A partir daqui é necessário copiar o token devolvido em Login e colar depois da palavra Bearer.
+
+Para criar um post:
+```
+curl --request POST \
+  --url http://localhost:3001/user/1/post \
+  --header 'Authorization: Bearer
+  colar_token_aqui
+  ' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "titulo",
+  "subtitle": "bla bla bla",
+  "post": "esse é um post"
+}'
+```
+Para visualizar um post:
+```
+curl --request GET \
+  --url http://localhost:3001/post/1 \
+  --header 'Authorization: Bearer
+  colar_token_aqui
+  '
+```
+Para editar um post:
+```
+curl --request PUT \
+  --url http://localhost:3001/post/1 \
+  --header 'Authorization: Bearer
+  colar_token_aqui
+  ' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "novo titulo",
+  "subtitle": " novo subtitulo",
+  "post": "novo post"
+}'
+```
+Para deletar um post:
+```
+curl --request DELETE \
+  --url http://localhost:3001/post/1 \
+  --header 'Authorization: Bearer
+  colar_token_aqui
+  '
+```
+
+
+# Autor
+
+Nikolas Santa Clara
+
+[LinkedIn](https://www.linkedin.com/in/nikolas-desenvolvedor/) ,
+[GitHub](https://github.com/nikolassco)
 
 <!-- ## Utilize o projeto [Blog - FE](https://portfolionikolas.vercel.app) para ter toda a experiência. -->
 
