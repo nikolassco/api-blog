@@ -2,7 +2,7 @@ const knex = require('../connection');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 
-const signup = async (req, res) => {
+const signupUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
@@ -30,7 +30,7 @@ const signup = async (req, res) => {
   }
 }
 
-const signin = async (req, res) => {
+const signinUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -56,8 +56,8 @@ const signin = async (req, res) => {
   }
 }
 
-const get = (req, res) => {
+const getUser = (req, res) => {
   return res.status(200).json({ message: req.user });
 }
 
-module.exports = { signup, signin, get }
+module.exports = { signupUser, signinUser, getUser }

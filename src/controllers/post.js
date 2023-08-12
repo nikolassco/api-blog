@@ -1,6 +1,6 @@
 const knex = require('../connection');
 
-const create = async (req, res) => {
+const createPost = async (req, res) => {
   const { id: user_id } = req.params;
   const { title, subtitle, post } = req.body;
 
@@ -8,17 +8,17 @@ const create = async (req, res) => {
     return res.status(404).json({ message: "Usuário não encontrado." });
   }
 
-  if (!title) {
-    return res.status(400).json({ message: "Título é obrigatório." });
-  }
+  // if (!title) {
+  //   return res.status(400).json({ message: "Título é obrigatório." });
+  // }
 
-  if (!subtitle) {
-    return res.status(400).json({ message: "Subtítulo é obrigatório." });
-  }
+  // if (!subtitle) {
+  //   return res.status(400).json({ message: "Subtítulo é obrigatório." });
+  // }
 
-  if (!post) {
-    return res.status(400).json({ message: "Post é obrigatório." });
-  }
+  // if (!post) {
+  //   return res.status(400).json({ message: "Post é obrigatório." });
+  // }
 
   try {
     const existsUser = await knex('users').where({ id: user_id }).first();
@@ -42,7 +42,7 @@ const create = async (req, res) => {
   }
 }
 
-const getAll = async (req, res) => {
+const getAllPosts = async (req, res) => {
   try {
     const posts = await knex('posts');
 
@@ -52,12 +52,12 @@ const getAll = async (req, res) => {
   }
 }
 
-const get = async (req, res) => {
+const getPost = async (req, res) => {
   const { id } = req.params;
 
-  if (isNaN(id)) {
-    return res.status(404).json({ message: "Post não encontrado." });
-  }
+  // if (isNaN(id)) {
+  //   return res.status(404).json({ message: "Post não encontrado." });
+  // }
 
   try {
     const post = await knex('posts').where({ id }).first();
@@ -72,7 +72,7 @@ const get = async (req, res) => {
   }
 }
 
-const edit = async (req, res) => {
+const editPost = async (req, res) => {
   const { id } = req.params;
   const { title, subtitle, post } = req.body;
 
@@ -99,7 +99,7 @@ const edit = async (req, res) => {
   }
 }
 
-const deleted = async (req, res) => {
+const deletePost = async (req, res) => {
   const { id } = req.params;
 
   if (isNaN(id)) {
@@ -122,4 +122,4 @@ const deleted = async (req, res) => {
 
 }
 
-module.exports = { create, getAll, get, edit, deleted }
+module.exports = { createPost, getAllPosts, getPost, editPost, deletePost }
