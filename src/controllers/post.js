@@ -8,18 +8,6 @@ const createPost = async (req, res) => {
     return res.status(404).json({ message: "Usuário não encontrado." });
   }
 
-  // if (!title) {
-  //   return res.status(400).json({ message: "Título é obrigatório." });
-  // }
-
-  // if (!subtitle) {
-  //   return res.status(400).json({ message: "Subtítulo é obrigatório." });
-  // }
-
-  // if (!post) {
-  //   return res.status(400).json({ message: "Post é obrigatório." });
-  // }
-
   try {
     const existsUser = await knex('users').where({ id: user_id }).first();
 
@@ -55,9 +43,9 @@ const getAllPosts = async (req, res) => {
 const getPost = async (req, res) => {
   const { id } = req.params;
 
-  // if (isNaN(id)) {
-  //   return res.status(404).json({ message: "Post não encontrado." });
-  // }
+  if (isNaN(id)) {
+    return res.status(404).json({ message: "Post não encontrado." });
+  }
 
   try {
     const post = await knex('posts').where({ id }).first();
